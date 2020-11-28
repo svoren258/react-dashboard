@@ -29,8 +29,8 @@ function PostsList(props: { userId: string }): JSX.Element {
               <Divider />
             </div>
           ))}
-        {hasError && <SnackBar />}
       </List>
+      {hasError && <SnackBar />}
     </div>
   );
 }

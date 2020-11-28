@@ -1,28 +1,22 @@
-import { makeStyles } from '@material-ui/core/styles';
 import React, { useState } from 'react';
 import Header from './components/Header';
 import SideMenu from './components/SideMenu';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-import UsersList from './components/UsersList';
+import Users from './components/Users';
 import UserDetail from './components/UserDetail';
 import { Page } from './models/Page';
 import { ChildRoutes, Routes } from './models/Routes';
 import PostDetail from './components/PostDetail';
+import { useAppStyles } from './common/styles';
 
 interface AppState {
   isMenuOpen: boolean;
   activePage: Page;
 }
 
-const useStyles = makeStyles({
-  contentWrapper: {
-    marginTop: '75px',
-  },
-});
-
 function App(): JSX.Element {
-  const classes = useStyles();
+  const classes = useAppStyles();
   const [state, setState] = useState<AppState>({
     isMenuOpen: false,
     activePage: Page.HOME_PAGE,
@@ -52,7 +46,7 @@ function App(): JSX.Element {
             <Home activePage={setActivePage} />
           </Route>
           <Route path={`/${Routes.USERS}`} exact>
-            <UsersList activePage={setActivePage} />
+            <Users activePage={setActivePage} />
           </Route>
           <Route path={`/${Routes.USERS}/:userId`} exact>
             <UserDetail activePage={setActivePage} />

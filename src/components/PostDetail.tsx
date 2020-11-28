@@ -18,14 +18,18 @@ function PostDetail(props: { activePage: (page: Page) => void }): JSX.Element {
     props.activePage(Page.POST_DETAIL);
   }, []);
   return (
-    <div className={classes.contentWrapper}>
+    <div>
       {loading && <Loading />}
-      <h2>{post && post.title}</h2>
-      <p>{post && post.body}</p>
-      <div>
-        <h3 className={classes.subtitle}>Comments (5)</h3>
-        {post && <CommentsList postId={post.id} />}
-      </div>
+      {!loading && (
+        <div className={classes.contentWrapper}>
+          <h2>{post && post.title}</h2>
+          <p>{post && post.body}</p>
+          <div>
+            <h3 className={classes.subtitle}>Comments (5)</h3>
+            {post && <CommentsList postId={post.id} />}
+          </div>
+        </div>
+      )}
       {hasError && <SnackBar />}
     </div>
   );

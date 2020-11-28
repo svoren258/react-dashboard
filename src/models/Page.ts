@@ -1,6 +1,6 @@
 export enum Page {
   USER_DETAIL = 'User detail',
-  USERS_TABLE = 'Users table',
+  USERS = 'Users',
   POST_DETAIL = 'Post detail',
   HOME_PAGE = 'Home',
 }
