@@ -64,8 +64,8 @@ function UserDetail(props: { activePage: (page: Page) => void }): JSX.Element {
             </div>
             <div className={classes.infoItemsWrapper}>{getInfoItems()}</div>
           </div>
-          <h3 className={classes.infoItem}>Posts (10)</h3>
           <div className={classes.postsWrapper}>
+            <h3 className={classes.infoItem}>Posts (10)</h3>
             <PostsList userId={userId} />
           </div>
         </div>

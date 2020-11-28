@@ -18,7 +18,7 @@ function PostDetail(props: { activePage: (page: Page) => void }): JSX.Element {
     props.activePage(Page.POST_DETAIL);
   }, []);
   return (
-    <div>
+    <div className={classes.contentContainer}>
       {loading && <Loading />}
       {!loading && (
         <div className={classes.contentWrapper}>

@@ -65,7 +65,12 @@ export const useLoadingStyles = makeStyles(() =>
 );
 
 export const usePostDetailStyles = makeStyles({
+  contentContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
   contentWrapper: {
+    maxWidth: '650px',
     margin: '15px',
     textTransform: 'capitalize',
   },
@@ -77,7 +82,8 @@ export const usePostDetailStyles = makeStyles({
 
 export const usePostListsStyles = makeStyles((theme: Theme) =>
   createStyles({
-    postWrapper: {
+    postsWrapper: {
+      maxWidth: '650px',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -109,6 +115,7 @@ export const useUserDetailStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       minWidth: '100%',
+      marginBottom: '20px',
       [theme.breakpoints.up('sm')]: {
         minWidth: '400px',
         padding: '15px 20px',
@@ -133,6 +140,7 @@ export const useUserDetailStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      marginBottom: 0,
     },
     infoItemLabel: {
       display: 'flex',
@@ -140,6 +148,9 @@ export const useUserDetailStyles = makeStyles((theme: Theme) =>
     },
     postsWrapper: {
       width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     },
   }),
 );

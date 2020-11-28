@@ -21,7 +21,7 @@ function PostsList(props: { userId: string }): JSX.Element {
           posts.map((post) => (
             <div key={post.id}>
               <Link style={navStyle} to={`/${Routes.USERS}/${props.userId}/${ChildRoutes.POSTS}/${post.id}`}>
-                <ListItem className={classes.postWrapper} button>
+                <ListItem className={classes.postsWrapper} button>
                   <ListItemText secondary={post.title} />
                   <ListItemText primary={post.body} />
                 </ListItem>
