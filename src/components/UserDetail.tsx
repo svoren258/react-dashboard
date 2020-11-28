@@ -40,10 +40,10 @@ function UserDetail(props: { activePage: (page: Page) => void }): JSX.Element {
     return undefined;
   };
   const getInfoItems = (): JSX.Element[] =>
-    Object.entries(infoItems).map(([key, value]: [InfoItems, string], index) => (
+    Object.entries(infoItems).map(([key, value], index) => (
       <div key={index} className={classes.infoItem}>
         <div className={classes.infoItemLabel}>
-          {getInfoItemIcon(key)}
+          {getInfoItemIcon(key as InfoItems)}
           <h4>{key}</h4>
         </div>
         <p>{value}</p>

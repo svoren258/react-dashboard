@@ -5,27 +5,30 @@ const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
+  const setErrorState = (error: Error) => {
+    setHasError(true);
+    setLoading(false);
+    console.error('Something went wrong during data fetching', error);
+  };
+
+  const fetchData = async () => {
     setLoading(true);
-    fetch(url)
-      .then((res) => {
-        res
-          .json()
-          .then((data) => {
-            setResponse(data as T);
-            setLoading(false);
-          })
-          .catch((e) => {
-            setHasError(true);
-            setLoading(false);
-            console.error('Something went wrong during data fetching', e);
-          });
-      })
-      .catch((e) => {
-        setHasError(true);
+    try {
+      const response = await fetch(url);
+      try {
+        const data = await response.json();
+        setResponse(data as T);
         setLoading(false);
-        console.error('Something went wrong during data fetching', e);
-      });
+      } catch (error) {
+        setErrorState(error);
+      }
+    } catch (error) {
+      setErrorState(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [url]);
   return [response, loading, hasError];
 };
