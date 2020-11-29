@@ -1,24 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MutableRefObject } from 'react';
 
-const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
+const useFetch = <T>(props: { isMountedRef: MutableRefObject<boolean>; url: string }): [T | null, boolean, boolean] => {
   const [response, setResponse] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-
+  const { isMountedRef, url } = props;
   const setErrorState = (error: Error) => {
-    setHasError(true);
-    setLoading(false);
+    if (isMountedRef.current) {
+      setHasError(true);
+      setLoading(false);
+    }
     console.error('Something went wrong during data fetching', error);
   };
 
   const fetchData = async () => {
-    setLoading(true);
+    if (isMountedRef.current) {
+      setLoading(true);
+    }
     try {
-      const response = await fetch(url);
+      const response = await fetch(props.url);
       try {
         const data = await response.json();
-        setResponse(data as T);
-        setLoading(false);
+        if (isMountedRef.current) {
+          setResponse(data as T);
+          setLoading(false);
+        }
       } catch (error) {
         setErrorState(error);
       }
@@ -29,7 +35,11 @@ const useFetch = <T>(url: string): [T | null, boolean, boolean] => {
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+    return () => {
+      // @ts-ignore
+      isMountedRef.current = false;
+    };
+  }, [url, isMountedRef]);
   return [response, loading, hasError];
 };
 

@@ -1,5 +1,5 @@
 import { Divider, List, ListItem, ListItemText } from '@material-ui/core';
-import React from 'react';
+import React, { useRef } from 'react';
 import { getCommentsEndpointUrl } from '../common/constants';
 import { useListStyles } from '../common/styles';
 import useFetch from '../hooks/useFetch';
@@ -9,7 +9,11 @@ import SnackBar from './SnackBar';
 
 function CommentsList(props: { postId: number }): JSX.Element {
   const classes = useListStyles();
-  const [comments, loading, hasError] = useFetch<Comment[]>(getCommentsEndpointUrl(props.postId));
+  const isMountedRef = useRef(true);
+  const [comments, loading, hasError] = useFetch<Comment[]>({
+    isMountedRef,
+    url: getCommentsEndpointUrl(props.postId),
+  });
 
   return (
     <div>

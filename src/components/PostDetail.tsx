@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPostEndpointUrl } from '../common/constants';
 import { usePostDetailStyles } from '../common/styles';
@@ -13,7 +13,8 @@ import SnackBar from './SnackBar';
 function PostDetail(props: { activePage: (page: Page) => void }): JSX.Element {
   const classes = usePostDetailStyles();
   const { postId } = useParams<MatchParams>();
-  const [post, loading, hasError] = useFetch<Post>(getPostEndpointUrl(postId));
+  const isMountedRef = useRef(true);
+  const [post, loading, hasError] = useFetch<Post>({ isMountedRef, url: getPostEndpointUrl(postId) });
   useEffect(() => {
     props.activePage(Page.POST_DETAIL);
   }, []);

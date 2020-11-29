@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { navStyle, useListStyles, usePostListsStyles } from '../common/styles';
 import { Post } from '../models/Post';
 import { List, ListItem, ListItemText, Divider } from '@material-ui/core/';
@@ -11,7 +11,8 @@ import SnackBar from './SnackBar';
 
 function PostsList(props: { userId: string }): JSX.Element {
   const classes = { ...useListStyles(), ...usePostListsStyles() };
-  const [posts, loading, hasError] = useFetch<Post[]>(getPostsEndpointUrl(props.userId));
+  const isMountedRef = useRef(true);
+  const [posts, loading, hasError] = useFetch<Post[]>({ isMountedRef, url: getPostsEndpointUrl(props.userId) });
 
   return (
     <div>

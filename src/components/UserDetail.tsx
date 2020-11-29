@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getUserEndpointUrl } from '../common/constants';
 import { useUserDetailStyles } from '../common/styles';
@@ -19,7 +19,8 @@ import LanguageIcon from '@material-ui/icons/Language';
 function UserDetail(props: { activePage: (page: Page) => void }): JSX.Element {
   const classes = useUserDetailStyles();
   const { userId } = useParams<MatchParams>();
-  const [user, loading, hasError] = useFetch<User>(getUserEndpointUrl(userId));
+  const isMountedRef = useRef(true);
+  const [user, loading, hasError] = useFetch<User>({ isMountedRef, url: getUserEndpointUrl(userId) });
 
   const infoItems: { [key in InfoItems]: string | undefined } = {
     [InfoItems.Email]: user?.email,
