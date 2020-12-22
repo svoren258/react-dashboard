@@ -6,7 +6,7 @@ import { User } from '../models/User';
 import { Link } from 'react-router-dom';
 import { Routes } from '../models/Routes';
 
-function UsersTable(props: { users: User[] }): JSX.Element {
+const usersTable = (props: { users: User[] }): JSX.Element => {
   const classes = useUserTableStyles();
 
   return (
@@ -40,5 +40,5 @@ function UsersTable(props: { users: User[] }): JSX.Element {
       </Table>
     </TableContainer>
   );
-}
-export default UsersTable;
+};
+export default usersTable;

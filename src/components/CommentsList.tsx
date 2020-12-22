@@ -7,7 +7,7 @@ import Loading from './Loading';
 import { Comment } from '../models/Comment';
 import SnackBar from './SnackBar';
 
-function CommentsList(props: { postId: number }): JSX.Element {
+const commentsList = (props: { postId: number }): JSX.Element => {
   const classes = useListStyles();
   const isMountedRef = useRef(true);
   const [comments, loading, hasError] = useFetch<Comment[]>({
@@ -32,5 +32,5 @@ function CommentsList(props: { postId: number }): JSX.Element {
       {hasError && <SnackBar />}
     </div>
   );
-}
-export default CommentsList;
+};
+export default commentsList;

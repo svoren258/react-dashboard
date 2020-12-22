@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { navStyle, useHeaderStyles } from '../common/styles';
 import { Page } from '../models/Page';
 
-function Header(props: {
+const header = (props: {
   onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
   title: string;
-}): JSX.Element {
+}): JSX.Element => {
   const classes = useHeaderStyles();
 
   return (
@@ -36,5 +36,5 @@ function Header(props: {
       </AppBar>
     </div>
   );
-}
-export default Header;
+};
+export default header;

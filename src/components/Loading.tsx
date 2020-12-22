@@ -2,7 +2,7 @@ import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useLoadingStyles } from '../common/styles';
 
-function Loading(): JSX.Element {
+const loading = (): JSX.Element => {
   const classes = useLoadingStyles();
 
   return (
@@ -10,6 +10,6 @@ function Loading(): JSX.Element {
       <CircularProgress />
     </div>
   );
-}
+};
 
-export default Loading;
+export default loading;

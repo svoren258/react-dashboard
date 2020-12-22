@@ -9,7 +9,7 @@ import useFetch from '../hooks/useFetch';
 import Loading from './Loading';
 import SnackBar from './SnackBar';
 
-function PostsList(props: { userId: string }): JSX.Element {
+const postsList = (props: { userId: string }): JSX.Element => {
   const classes = { ...useListStyles(), ...usePostListsStyles() };
   const isMountedRef = useRef(true);
   const [posts, loading, hasError] = useFetch<Post[]>({ isMountedRef, url: getPostsEndpointUrl(props.userId) });
@@ -34,5 +34,5 @@ function PostsList(props: { userId: string }): JSX.Element {
       {hasError && <SnackBar />}
     </div>
   );
-}
-export default PostsList;
+};
+export default postsList;

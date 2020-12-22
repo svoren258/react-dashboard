@@ -15,7 +15,7 @@ interface AppState {
   activePage: Page;
 }
 
-function App(): JSX.Element {
+const app = (): JSX.Element => {
   const classes = useAppStyles();
   const [state, setState] = useState<AppState>({
     isMenuOpen: false,
@@ -31,14 +31,14 @@ function App(): JSX.Element {
 
   const sideMenu = () => {
     if (state.isMenuOpen) {
-      return <SideMenu toggleDrawer={() => toggleMenu()} open={state.isMenuOpen} />;
+      return <SideMenu toggleDrawer={toggleMenu} open={state.isMenuOpen} />;
     }
     return undefined;
   };
 
   return (
     <Router>
-      <Header onClick={() => toggleMenu()} title={state.activePage} />
+      <Header onClick={toggleMenu} title={state.activePage} />
       {sideMenu()}
       <div className={classes.contentWrapper}>
         <Switch>
@@ -58,6 +58,6 @@ function App(): JSX.Element {
       </div>
     </Router>
   );
-}
+};
 
-export default App;
+export default app;

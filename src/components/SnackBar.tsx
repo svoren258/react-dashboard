@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, SyntheticEvent, MouseEvent, Fragment } from 'react';
 import { Button, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
-function SimpleSnackbar(): JSX.Element {
-  const [open, setOpen] = React.useState(true);
-  const handleClose = (_: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+const simpleSnackbar = (): JSX.Element => {
+  const [open, setOpen] = useState(true);
+  const handleClose = (_: SyntheticEvent | MouseEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -23,17 +23,17 @@ function SimpleSnackbar(): JSX.Element {
         onClose={handleClose}
         message="Fetch failed"
         action={
-          <React.Fragment>
+          <Fragment>
             <Button color="secondary" size="small" onClick={handleClose}>
               UNDO
             </Button>
             <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
               <CloseIcon fontSize="small" />
             </IconButton>
-          </React.Fragment>
+          </Fragment>
         }
       />
     </div>
   );
-}
-export default SimpleSnackbar;
+};
+export default simpleSnackbar;

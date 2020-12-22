@@ -10,7 +10,7 @@ import CommentsList from './CommentsList';
 import Loading from './Loading';
 import SnackBar from './SnackBar';
 
-function PostDetail(props: { activePage: (page: Page) => void }): JSX.Element {
+const postDetail = (props: { activePage: (page: Page) => void }): JSX.Element => {
   const classes = usePostDetailStyles();
   const { postId } = useParams<MatchParams>();
   const isMountedRef = useRef(true);
@@ -34,5 +34,5 @@ function PostDetail(props: { activePage: (page: Page) => void }): JSX.Element {
       {hasError && <SnackBar />}
     </div>
   );
-}
-export default PostDetail;
+};
+export default postDetail;

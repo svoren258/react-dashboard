@@ -5,7 +5,7 @@ import { navStyle, useListStyles } from '../common/styles';
 import { Routes } from '../models/Routes';
 import { User } from '../models/User';
 
-function UsersList(props: { users: User[] }): JSX.Element {
+const usersList = (props: { users: User[] }): JSX.Element => {
   const classes = useListStyles();
 
   return (
@@ -22,5 +22,5 @@ function UsersList(props: { users: User[] }): JSX.Element {
       ))}
     </List>
   );
-}
-export default UsersList;
+};
+export default usersList;

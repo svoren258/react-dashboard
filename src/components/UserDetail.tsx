@@ -16,7 +16,7 @@ import HouseIcon from '@material-ui/icons/House';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import LanguageIcon from '@material-ui/icons/Language';
 
-function UserDetail(props: { activePage: (page: Page) => void }): JSX.Element {
+const userDetail = (props: { activePage: (page: Page) => void }): JSX.Element => {
   const classes = useUserDetailStyles();
   const { userId } = useParams<MatchParams>();
   const isMountedRef = useRef(true);
@@ -74,5 +74,5 @@ function UserDetail(props: { activePage: (page: Page) => void }): JSX.Element {
       {hasError && <SnackBar />}
     </div>
   );
-}
-export default UserDetail;
+};
+export default userDetail;

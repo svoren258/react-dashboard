@@ -36,7 +36,6 @@ const useFetch = <T>(props: { isMountedRef: MutableRefObject<boolean>; url: stri
   useEffect(() => {
     fetchData();
     return () => {
-      // @ts-ignore
       isMountedRef.current = false;
     };
   }, [url, isMountedRef]);

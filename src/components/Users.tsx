@@ -9,7 +9,7 @@ import SnackBar from './SnackBar';
 import UsersTable from './UsersTable';
 import UsersList from './UsersList';
 
-function Users(props: { activePage: (page: Page) => void }): JSX.Element {
+const users = (props: { activePage: (page: Page) => void }): JSX.Element => {
   const matchesLtSm = useMediaQuery('(max-width: 649px)');
   const isMountedRef = useRef(true);
   const [users, loading, hasError] = useFetch<User[]>({ isMountedRef, url: getUsersEndpointUrl() });
@@ -30,5 +30,5 @@ function Users(props: { activePage: (page: Page) => void }): JSX.Element {
       {hasError && <SnackBar />}
     </div>
   );
-}
-export default Users;
+};
+export default users;

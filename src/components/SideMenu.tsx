@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import clsx from 'clsx';
 import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -9,10 +9,10 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 
-function SideMenu(props: {
+const sideMenu = (props: {
   open: boolean;
   toggleDrawer: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void) | undefined;
-}): JSX.Element {
+}): JSX.Element => {
   const classes = useSideMenuStyles();
 
   const getIcon = (route: Routes) => {
@@ -46,12 +46,12 @@ function SideMenu(props: {
     );
   };
   return (
-    <React.Fragment key={'left'}>
+    <Fragment key={'left'}>
       <Drawer anchor={'left'} onClose={props.toggleDrawer} open={props.open}>
         {menuList()}
       </Drawer>
-    </React.Fragment>
+    </Fragment>
   );
-}
+};
 
-export default SideMenu;
+export default sideMenu;
