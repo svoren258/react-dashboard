@@ -10,35 +10,25 @@ import { ChildRoutes, Routes } from './models/Routes';
 import PostDetail from './components/PostDetail';
 import { useAppStyles } from './common/styles';
 
-interface AppState {
-  isMenuOpen: boolean;
-  activePage: Page;
-}
-
 const app = (): JSX.Element => {
   const classes = useAppStyles();
-  const [state, setState] = useState<AppState>({
-    isMenuOpen: false,
-    activePage: Page.HOME_PAGE,
-  });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activePage, setActivePage] = useState(Page.HOME_PAGE);
 
   const toggleMenu = () => {
-    setState({ ...state, isMenuOpen: !state.isMenuOpen });
-  };
-  const setActivePage = (currentPage: Page) => {
-    setState({ ...state, activePage: currentPage });
+    setIsMenuOpen((previousState) => !previousState);
   };
 
   const sideMenu = () => {
-    if (state.isMenuOpen) {
-      return <SideMenu toggleDrawer={toggleMenu} open={state.isMenuOpen} />;
+    if (isMenuOpen) {
+      return <SideMenu toggleDrawer={toggleMenu} open={isMenuOpen} />;
     }
     return undefined;
   };
 
   return (
     <Router>
-      <Header onClick={toggleMenu} title={state.activePage} />
+      <Header onClick={toggleMenu} title={activePage} />
       {sideMenu()}
       <div className={classes.contentWrapper}>
         <Switch>
