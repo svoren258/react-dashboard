@@ -3,10 +3,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useLoadingStyles } from '../common/styles';
 
 const loading = (): JSX.Element => {
-  const classes = useLoadingStyles();
+  const { root } = useLoadingStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={root}>
       <CircularProgress />
     </div>
   );

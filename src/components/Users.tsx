@@ -16,17 +16,11 @@ const users = (props: { activePage: (page: Page) => void }): JSX.Element => {
   useEffect(() => {
     props.activePage(Page.USERS);
   }, []);
-  const renderUsers = () => {
-    if (matchesLtSm) {
-      return users && <UsersList users={users} />;
-    }
-    return users && <UsersTable users={users} />;
-  };
 
   return (
     <div>
       {loading && <Loading />}
-      {renderUsers()}
+      {users ? (matchesLtSm && <UsersList users={users} />) || <UsersTable users={users} /> : null}
       {hasError && <SnackBar />}
     </div>
   );

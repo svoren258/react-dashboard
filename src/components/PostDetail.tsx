@@ -11,7 +11,7 @@ import Loading from './Loading';
 import SnackBar from './SnackBar';
 
 const postDetail = (props: { activePage: (page: Page) => void }): JSX.Element => {
-  const classes = usePostDetailStyles();
+  const { contentContainer, contentWrapper, subtitle } = usePostDetailStyles();
   const { postId } = useParams<MatchParams>();
   const isMountedRef = useRef(true);
   const [post, loading, hasError] = useFetch<Post>({ isMountedRef, url: getPostEndpointUrl(postId) });
@@ -19,14 +19,14 @@ const postDetail = (props: { activePage: (page: Page) => void }): JSX.Element =>
     props.activePage(Page.POST_DETAIL);
   }, []);
   return (
-    <div className={classes.contentContainer}>
+    <div className={contentContainer}>
       {loading && <Loading />}
       {!loading && (
-        <div className={classes.contentWrapper}>
+        <div className={contentWrapper}>
           <h2>{post && post.title}</h2>
           <p>{post && post.body}</p>
           <div>
-            <h3 className={classes.subtitle}>Comments (5)</h3>
+            <h3 className={subtitle}>Comments (5)</h3>
             {post && <CommentsList postId={post.id} />}
           </div>
         </div>

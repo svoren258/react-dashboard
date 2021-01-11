@@ -9,26 +9,20 @@ const header = (props: {
   onClick: ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined;
   title: string;
 }): JSX.Element => {
-  const classes = useHeaderStyles();
+  const { root, menuButton, title, backToHomeButton } = useHeaderStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            onClick={props.onClick}
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
+          <IconButton onClick={props.onClick} edge="start" className={menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={title}>
             {props.title}
           </Typography>
           <Link style={navStyle} to="/">
-            <Button className={classes.backToHomeButton} disabled={props.title === Page.HOME_PAGE} color="inherit">
+            <Button className={backToHomeButton} disabled={props.title === Page.HOME_PAGE} color="inherit">
               Back to Home
             </Button>
           </Link>

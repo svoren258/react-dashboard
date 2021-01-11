@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import clsx from 'clsx';
 import { List, ListItem, ListItemIcon, ListItemText, Drawer } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom';
@@ -13,7 +12,7 @@ const sideMenu = (props: {
   open: boolean;
   toggleDrawer: ((event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void) | undefined;
 }): JSX.Element => {
-  const classes = useSideMenuStyles();
+  const { list } = useSideMenuStyles();
 
   const getIcon = (route: Routes) => {
     if (route === Routes.USERS) {
@@ -31,7 +30,7 @@ const sideMenu = (props: {
 
   const menuList = () => {
     return (
-      <div className={clsx(classes.list)} role="presentation" onClick={props.toggleDrawer}>
+      <div className={list} role="presentation" onClick={props.toggleDrawer}>
         <List>
           {Object.values(Routes).map((title, index) => (
             <Link key={index} style={navStyle} to={`/${title}`}>

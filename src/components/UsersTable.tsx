@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 import { Routes } from '../models/Routes';
 
 const usersTable = (props: { users: User[] }): JSX.Element => {
-  const classes = useUserTableStyles();
+  const { table } = useUserTableStyles();
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table className={table} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Username</TableCell>

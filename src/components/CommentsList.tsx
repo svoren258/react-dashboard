@@ -8,7 +8,7 @@ import { Comment } from '../models/Comment';
 import SnackBar from './SnackBar';
 
 const commentsList = (props: { postId: number }): JSX.Element => {
-  const classes = useListStyles();
+  const { root } = useListStyles();
   const isMountedRef = useRef(true);
   const [comments, loading, hasError] = useFetch<Comment[]>({
     isMountedRef,
@@ -18,7 +18,7 @@ const commentsList = (props: { postId: number }): JSX.Element => {
   return (
     <div>
       {loading && <Loading />}
-      <List component="nav" className={classes.root} aria-label="mailbox folders">
+      <List component="nav" className={root} aria-label="mailbox folders">
         {comments &&
           comments.map((comment) => (
             <div key={comment.id}>

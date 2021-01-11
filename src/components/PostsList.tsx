@@ -10,19 +10,19 @@ import Loading from './Loading';
 import SnackBar from './SnackBar';
 
 const postsList = (props: { userId: string }): JSX.Element => {
-  const classes = { ...useListStyles(), ...usePostListsStyles() };
+  const { root, postsWrapper } = { ...useListStyles(), ...usePostListsStyles() };
   const isMountedRef = useRef(true);
   const [posts, loading, hasError] = useFetch<Post[]>({ isMountedRef, url: getPostsEndpointUrl(props.userId) });
 
   return (
     <div>
       {loading && <Loading />}
-      <List component="nav" className={classes.root} aria-label="mailbox folders">
+      <List component="nav" className={root} aria-label="mailbox folders">
         {posts &&
           posts.map((post) => (
             <div key={post.id}>
               <Link style={navStyle} to={`/${Routes.USERS}/${props.userId}/${ChildRoutes.POSTS}/${post.id}`}>
-                <ListItem className={classes.postsWrapper} button>
+                <ListItem className={postsWrapper} button>
                   <ListItemText secondary={post.title} />
                   <ListItemText primary={post.body} />
                 </ListItem>

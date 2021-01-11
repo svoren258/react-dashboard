@@ -11,26 +11,21 @@ import PostDetail from './components/PostDetail';
 import { useAppStyles } from './common/styles';
 
 const app = (): JSX.Element => {
-  const classes = useAppStyles();
+  const { contentWrapper } = useAppStyles();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activePage, setActivePage] = useState(Page.HOME_PAGE);
 
   const toggleMenu = () => {
-    setIsMenuOpen((previousState) => !previousState);
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const sideMenu = () => {
-    if (isMenuOpen) {
-      return <SideMenu toggleDrawer={toggleMenu} open={isMenuOpen} />;
-    }
-    return undefined;
-  };
+  const sideMenu = isMenuOpen ? <SideMenu toggleDrawer={toggleMenu} open={isMenuOpen} /> : null;
 
   return (
     <Router>
       <Header onClick={toggleMenu} title={activePage} />
-      {sideMenu()}
-      <div className={classes.contentWrapper}>
+      {sideMenu}
+      <div className={contentWrapper}>
         <Switch>
           <Route path="/" exact>
             <Home activePage={setActivePage} />

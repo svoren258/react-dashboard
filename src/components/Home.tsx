@@ -4,13 +4,13 @@ import { Page } from '../models/Page';
 import HomeIcon from '@material-ui/icons/Home';
 
 const home = (props: { activePage: (page: Page) => void }): JSX.Element => {
-  const classes = useHomeStyles();
+  const { homePage, homePageContainer } = useHomeStyles();
   useEffect(() => {
     props.activePage(Page.HOME_PAGE);
   }, []);
   return (
-    <div className={classes.homePageContainer}>
-      <h1 className={classes.homePage}>Welcome Home!</h1>
+    <div className={homePageContainer}>
+      <h1 className={homePage}>Welcome Home!</h1>
       <HomeIcon fontSize={'large'} />
     </div>
   );

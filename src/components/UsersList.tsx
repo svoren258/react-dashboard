@@ -6,10 +6,10 @@ import { Routes } from '../models/Routes';
 import { User } from '../models/User';
 
 const usersList = (props: { users: User[] }): JSX.Element => {
-  const classes = useListStyles();
+  const { root } = useListStyles();
 
   return (
-    <List component="nav" className={classes.root} aria-label="mailbox folders">
+    <List component="nav" className={root} aria-label="mailbox folders">
       {props.users.map((user) => (
         <div key={user.id}>
           <Link style={navStyle} to={`/${Routes.USERS}/${user.id}`}>
